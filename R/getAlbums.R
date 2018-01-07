@@ -19,6 +19,7 @@ getAlbums<-function(id,type="album",market="US",token){
                 function(x) data.frame(
                   id = x$id,
                   name = x$name,
+                  img = x$images[2],
                   album_type = x$album_type,
                   available_markets = paste(x$available_markets, collapse = ";"),
                   stringsAsFactors = F)) %>%
