@@ -20,7 +20,8 @@ getPlaylistSongs<-function(ownerid,playlistid,offset,token){
   artistId<-unlist(lapply(seq(1:length(tracks)), function (x){return(data.frame(json2$track$artists[x])$id[1])}))
   album<-unlist(json2$track$album$name)
   albumId<-unlist(json2$track$album$id)
-  albumImg<-unlist(json2$track$album$images$2$url)
+  #albumImg<-unlist(json2$track$album$images$2$url)
+  albumImg<-unlist(lapply(seq(1:length(tracks)), function (x){return(data.frame(json2$track$album$images$url[x])$id[1])}))
   playlistSongs<-data.frame(tracks,id,popularity,artist,artistId,album,albumId,albumImg,stringsAsFactors = F)
   return(playlistSongs)
 }
