@@ -9,8 +9,8 @@
 #'@export
 
 #function to get playlists' songs
-getPlaylistSongs<-function(ownerid,playlistid,offset=0,token){
-  req<-httr::GET(paste0("https://api.spotify.com/v1/users/",ownerid,"/playlists/",playlistid,"/tracks?&limit=1000&offset=",offset),httr::config(token = token))
+getPlaylistSongs<-function(ownerid,playlistid,offset,token){
+  req<-httr::GET(paste0("https://api.spotify.com/v1/users/",ownerid,"/playlists/",playlistid,"/tracks?&limit=100&offset=",offset),httr::config(token = token))
   json1<-httr::content(req)
   json2<-jsonlite::fromJSON(jsonlite::toJSON(json1))$items
   tracks<-unlist(json2$track$name)
